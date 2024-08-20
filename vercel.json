@@ -1,0 +1,22 @@
+{
+    "projects": [
+      {
+        "name": "mern-foodie-client",
+        "path": "client"
+      },
+      {
+        "name": "mern-foodie-server",
+        "path": "server"
+      }
+    ],
+    "functions": {
+      "api/*.js": {
+        "runtime": "nodejs14.x"
+      }
+    },
+    "routes": [
+      { "src": "/api/(.*)", "dest": "/server/api/$1" },
+      { "src": "/(.*)", "dest": "/client/$1" }
+    ]
+  }
+  

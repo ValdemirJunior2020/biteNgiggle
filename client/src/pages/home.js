@@ -22,7 +22,7 @@ export const Home = () => {
         const response = await axios.get(
           `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
         );
-        setSavedRecipes(response.data.savedRecipes);
+        setSavedRecipes(response.data.savedRecipes || []);
       } catch (err) {
         console.log(err);
       }
@@ -38,33 +38,32 @@ export const Home = () => {
         recipeID,
         userID,
       });
-      setSavedRecipes(response.data.savedRecipes);
+      setSavedRecipes(response.data.savedRecipes || []);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const isRecipeSaved = (id) => savedRecipes.includes(id);
+  const isRecipeSaved = (id) => savedRecipes && savedRecipes.includes(id);
 
   return (
-    <div>
-      <h1>Recipes</h1>
-      <ul>
+    <div className="container">
+      <h1 className="my-4">Recipes</h1>
+      <ul className="list-group">
         {recipes.map((recipe) => (
-          <li key={recipe._id}>
-            <div>
+          <li key={recipe._id} className="list-group-item mb-3">
+            <div className="d-flex justify-content-between align-items-center">
               <h2>{recipe.name}</h2>
               <button
+                className="btn btn-primary"
                 onClick={() => saveRecipe(recipe._id)}
                 disabled={isRecipeSaved(recipe._id)}
               >
                 {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
               </button>
             </div>
-            <div className="instructions">
-              <p>{recipe.instructions}</p>
-            </div>
-            <img src={recipe.imageUrl} alt={recipe.name} /> {/* Corrected this line */}
+            <p className="mt-2">{recipe.instructions}</p>
+            <img src={recipe.imageUrl} alt={recipe.name} className="img-fluid" />
           </li>
         ))}
       </ul>

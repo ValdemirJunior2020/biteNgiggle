@@ -5,18 +5,25 @@ import { Auth } from "./pages/auth";
 import { CreateRecipe } from "./pages/create-recipe";
 import { Home } from "./pages/home";
 import { SavedRecipes } from "./pages/saved-recipes";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+// The rest of your imports and React code
+
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create-recipe" element={<CreateRecipe />} />
-          <Route path="/saved-recipes" element={<SavedRecipes />} />
-          <Route path="/auth" element={<Auth />} />
-        </Routes>
+        <div className="container mt-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create-recipe" element={<CreateRecipe />} />
+            <Route path="/saved-recipes" element={<SavedRecipes />} />
+            <Route path="/auth" element={<Auth />} />
+          </Routes>
+        </div>
       </Router>
     </div>
   );

@@ -64,3 +64,4 @@ client/next-env.d.ts
 # Ignore temporary files
 *.tmp
 *.temp
+.vercel
